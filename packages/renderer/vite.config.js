@@ -1,10 +1,10 @@
 /* eslint-env node */
 
-import {chrome} from '../../.electron-vendors.cache.json';
-import {join} from 'path';
-import {builtinModules} from 'module';
+import { chrome } from '../../.electron-vendors.cache.json'
+import { join } from 'path'
+import { builtinModules } from 'module'
 
-const PACKAGE_ROOT = __dirname;
+const PACKAGE_ROOT = __dirname
 
 /**
  * @type {import('vite').UserConfig}
@@ -15,15 +15,15 @@ const config = {
   root: PACKAGE_ROOT,
   resolve: {
     alias: {
-      '/@/': join(PACKAGE_ROOT, 'src') + '/',
-    },
+      '/@/': join(PACKAGE_ROOT, 'src') + '/'
+    }
   },
   plugins: [],
   base: '',
   server: {
     fs: {
-      strict: true,
-    },
+      strict: true
+    }
   },
   build: {
     sourcemap: true,
@@ -33,14 +33,15 @@ const config = {
     rollupOptions: {
       external: [
         ...builtinModules.flatMap(p => [p, `node:${p}`]),
-      ],
+        ...builtinModules.filter(m => m !== 'process' && m !== 'assert')
+      ]
     },
     emptyOutDir: true,
-    brotliSize: false,
+    brotliSize: false
   },
   test: {
-    environment: 'happy-dom',
-  },
-};
+    environment: 'happy-dom'
+  }
+}
 
-export default config;
+export default config

@@ -43,7 +43,7 @@ const syntaxHighlighting = HighlightStyle.define([
 import type React from 'react'
 
 interface Props {
-  iniitialDoc: string
+  initialDoc: string
   onChange?: (state: EditorState) => void
 }
 
@@ -58,7 +58,7 @@ const useCodeMirror = <T extends Element>(
     if (!refContainer.current) return
 
     const startState = EditorState.create({
-      doc: props.iniitialDoc,
+      doc: props.initialDoc,
       extensions: [
         keymap.of([...defaultKeymap, ...historyKeymap]),
         lineNumbers(),
